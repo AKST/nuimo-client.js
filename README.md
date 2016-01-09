@@ -8,7 +8,7 @@ import withNuimo from "nuimo-client";
 
 // log updates
 withNuimo().then(nuimo =>
-  nuimo.listen((data) =>
+  nuimo.listen(data =>
     console.log(data)));
 ```
 
