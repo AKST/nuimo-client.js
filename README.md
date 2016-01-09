@@ -6,11 +6,10 @@ via the BLE (Bluetooth Low Energy) API ([read more here][nuimo-ble]).
 ```javascript
 import withNuimo from "nuimo-client";
 
-//
-// log updates for updates
-//
+// log updates
 withNuimo().then(nuimo =>
-  nuimo.listen(data) => console.log(data));
+  nuimo.listen((data) =>
+    console.log(data)));
 ```
 
 ## Features
