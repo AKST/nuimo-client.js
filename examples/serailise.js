@@ -1,3 +1,10 @@
+/**
+ * To run example
+ *
+ * cd <project directory
+ * npm install
+ * ./node_modules/.bin/babel-node ./examples/serialise.js
+ */
 import withNuimo from "../src";
 
 /**
