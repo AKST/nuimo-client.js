@@ -1,5 +1,6 @@
 {
   "name": "nuimo-client",
+  "author": "akst",
   "version": "0.1.7",
   "description": "",
   "main": "lib/index.js",
@@ -7,6 +8,10 @@
     "build": "rm -rf lib && ./node_modules/.bin/babel --presets es2015,stage-0 -d lib src",
     "lint": "./node_modules/.bin/eslint src/*.js",
     "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:AKST/nuimo-client.js.git"
   },
   "author": "",
   "license": "MIT",
