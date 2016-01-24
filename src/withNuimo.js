@@ -1,6 +1,16 @@
+/**
+ * sets up events listening to updates
+ */
+
 import noble from "noble";
 import EventEmitter from "events";
-import { SERVICE_SENSOR_UUID } from "./common-uuids";
+import {
+  ALL_SERVICES,
+  ALL_CHARACTERISTICS,
+  SERVICE_SENSOR_UUID,
+  SERVICE_MATRIX_UUID,
+  CHARACTERISTIC_MATRIX_UUID,
+} from "./common-uuids";
 import client from "./client";
 
 
@@ -41,11 +51,13 @@ function getDevice() {
  */
 function readDevice (peripheral) {
   return new Promise((resolve, reject) => {
-    /**
-     * this will be passed into the NuimoClient,
-     * which will be yielded from the promise
-     */
-    const emitter = new EventEmitter();
+
+    const getByUUID = field => (uuid, object) =>
+      object[field].find(e => e.uuid === uuid);
+
+    const getService = getByUUID('services');
+    const getCharacteristic = getByUUID('characteristics');
+
 
     /**
      * discovers the sensor service and it's characteristics
@@ -53,8 +65,11 @@ function readDevice (peripheral) {
      */
     function discoverServicesAndCharacteristics(error) {
       if (error) { return reject(error); }
-      const SERVICE_UUIDS = [SERVICE_SENSOR_UUID];
-      peripheral.discoverSomeServicesAndCharacteristics(SERVICE_UUIDS, [], setupEmitter);
+      peripheral.discoverSomeServicesAndCharacteristics(
+        ALL_SERVICES,
+        ALL_CHARACTERISTICS,
+        setupEmitter
+      );
     }
 
     /**
@@ -64,36 +79,30 @@ function readDevice (peripheral) {
      */
     function setupEmitter(error) {
       if (error) { return reject(error); }
-      let required = 0;
-      let configed = 0;
-      peripheral.services.forEach(service => {
-        required += service.characteristics.length;
-        service.characteristics.forEach(characteristic => {
-          characteristic.notify([], function () {
-            characteristic.on("data", onData(characteristic.uuid));
-            configed += 1;
-            /**
-             * once all the characteristics have been set up to
-             * notify, then resolve the promise with the client
-             */
-            if (configed === required) {
-              resolve(new client.NuimoClient(emitter, peripheral));
-            }
-          });
-        });
-      });
+
+      const sensorService = getService(SERVICE_SENSOR_UUID, peripheral);
+      const notifiable = sensorService.characteristics;
+      const withNotified = Promise.all(notifiable.map(characteristic =>
+        new Promise((resolve, reject) =>
+          void characteristic.notify([], error =>
+            void (!!error ? reject(error) : resolve(characteristic))))));
+
+      withNotified.then(characteristics => {
+        const emitter = new EventEmitter();
+        const onData = uuid => buffer =>
+          void emitter.emit("data", { characteristic: uuid, buffer });
+
+        characteristics.forEach(characteristic =>
+          void characteristic.on('data', onData(characteristic.uuid)));
+
+        const matrixCharacteristic =
+          getCharacteristic(CHARACTERISTIC_MATRIX_UUID,
+            getService(SERVICE_MATRIX_UUID, peripheral));
+
+        resolve(new client.NuimoClient(emitter, matrixCharacteristic, peripheral));
+      }).catch(reject);
     }
 
-    /**
-     * pipes data into the event emitter used by the NuimoClient
-     * @param {string} uuid
-     * @return {Function<Buffer, void>}
-     */
-    function onData(uuid) {
-      return buffer => {
-        emitter.emit("data", { characteristic: uuid, buffer });
-      };
-    }
 
     /**
      * attmpt to connect to the nuimo peripheral

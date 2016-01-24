@@ -32,6 +32,7 @@ const Serailiser = {
   }
 };
 
+
 withNuimo().then(nuimo => {
   nuimo.listen(data => {
     const serialised = Serailiser.serialise(data);

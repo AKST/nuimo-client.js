@@ -70,6 +70,10 @@ export class SwipeUpdate extends Update {
 /**
  * parses the updates buffer representation, and returns an update
  * see here https://cdn-images-2.medium.com/max/1600/1*lL52VX2WKOUu1ezul4FQrQ.jpeg
+ *
+ * @param {UUID} (a uuid string)
+ * @param {Buffer} (a node buffer)
+ * @return Update
  */
 export function updateFactory(characteristicUUID, buffer) {
   switch (characteristicUUID) {
