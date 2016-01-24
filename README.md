@@ -1,5 +1,13 @@
 # nuimo-client.js
 
+## Hit the ground runnning
+
+```
+npm install --save nuimo-client
+```
+
+## What is this?
+
 A simple client library for communicating with the [senic nuimo][nuimo-docs],
 via the BLE (Bluetooth Low Energy) API ([read more here][nuimo-ble]).
 
