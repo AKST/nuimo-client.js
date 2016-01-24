@@ -20,15 +20,11 @@ withNuimo().then(nuimo =>
     console.log(data)));
 ```
 
-## Features
+## Missing Features
 
-Only a subset of funtionality has been implemented so due to the
-undocumented nature of the BLE API at the moment, but included feaures are:
-
-- notifications
-  - directional swipes
-  - rotation
-  - clicks
+Due to the partially undocumated nature of the BLE API only a subset of
+functionality has been implemented thus far, which is mostly the fly
+gesuture.
 
 [nuimo-docs]: https://www.senic.com/developers
 [nuimo-ble]: https://medium.com/@senic/developing-for-the-nuimo-controller-7292becfacff

@@ -1,7 +1,7 @@
 {
   "name": "nuimo-client",
   "author": "akst",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
