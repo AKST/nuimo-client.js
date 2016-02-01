@@ -30,6 +30,31 @@ export class NuimoClient {
       });
     });
   }
+  
+  /**
+   * @param {Array}
+   * return Buffer
+   */
+  createLEDMatrixBuffer(data){
+    var strData = '';
+    if(data instanceof Array){
+      strData = data.join('');
+    } else {
+      strData = data;
+    }
+    
+    var tempArr = strData.split('').filter(x => x === '1' || x === '0');
+    if(tempArr.length != 81)
+      throw 'data must be 81 bits';
+    
+    var output = [];
+    
+    while(tempArr.length > 0){
+      var temp = parseInt(tempArr.splice(0,8).reverse().join(''), 2);
+      output.push(temp);
+    }
+    return new Buffer(output);
+  }
 
   /**
    * @param Buffer
@@ -42,7 +67,7 @@ export class NuimoClient {
     const scaledDelay = Math.max(0, Math.min(255, Math.floor(delay * 10)));
     const newData = new Buffer(13);
 
-    newData.copy(state, 0, 0, 10);
+    state.copy(newData, 0, 0, 10);
     newData.writeUInt8(scaledBrightness, 11);
     newData.writeUInt8(scaledDelay, 12);
 
