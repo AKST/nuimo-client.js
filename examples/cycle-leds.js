@@ -6,7 +6,6 @@
  * ./node_modules/.bin/babel-node ./examples/cycle-leds.js
  */
 import withNuimo from "../src";
-import {ClickUpdate} from "../src/update"
 import images from './led-images';
 
 console.log('Looking for Nuimo device...');
@@ -18,13 +17,13 @@ withNuimo().then(nuimo => {
         ledImages.push(nuimo.createLEDMatrixBuffer(images[key]));
     }
     
-    console.log('Images loaded. Press button to cycle through loaded images.');
+    console.log('Images loaded. Press Nuimo to cycle through loaded images.');
     nuimo.listen(data => {
       if(data.type === 'click' && data.down){
         nuimo.writeLEDS(ledImages[currentIndex], .8, 2);
         currentIndex = (currentIndex+1) % ledImages.length;
       }
     });
-}).catch(e=>{
+}).catch(e => {
    console.log('ERROR', e); 
 });
