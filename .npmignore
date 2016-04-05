@@ -1,0 +1,10 @@
+coverage/
+node_modules/
+typings/
+npm-debug.log
+
+*.d.ts
+*.log
+*.tgz
+
+!nuimo-client-ts.d.ts

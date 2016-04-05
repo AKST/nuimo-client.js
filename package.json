@@ -1,29 +1,50 @@
 {
-  "name": "nuimo-client",
-  "author": "akst",
+  "name": "nuimo-client-ts",
+  "author": "wind-rider",
   "version": "0.2.0",
-  "description": "",
-  "main": "lib/index.js",
-  "scripts": {
-    "build": "rm -rf lib && ./node_modules/.bin/babel --presets es2015,stage-0 -d lib src",
-    "lint": "./node_modules/.bin/eslint src/*.js",
-    "prepublish": "npm run build"
-  },
+  "description": "TypeScript port of nuimo-client.js with additional features like support for multiple Nuimos.",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:AKST/nuimo-client.js.git"
+    "url": "https://github.com/wind-rider/nuimo-client.ts"
   },
-  "author": "",
-  "license": "MIT",
+  "keywords": [
+    "Nuimo",
+    "Senic",
+    "TypeScript",
+    "ES6"
+  ],
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "gulp test"
+  },
   "dependencies": {
-    "noble": "^1.2.1"
+    "noble": "^1.3.0",
+    "source-map-support": "^0.4.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.4.0",
-    "babel-core": "^6.4.0",
-    "babel-eslint": "^5.0.0-beta6",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-stage-0": "^6.3.13",
-    "eslint": "^1.10.3"
-  }
+    "assert": "^1.3.0",
+    "del": "2.0.2",
+    "dotbin": "^1.0",
+    "dts-generator": "^1.7",
+    "gulp": "^3.9.0",
+    "gulp-help": "^1.6.0",
+    "gulp-inject": "3.0.0",
+    "gulp-jasmine": "^2.0.1",
+    "gulp-sequence": "0.4.1",
+    "gulp-tsconfig-files": "0.0.2",
+    "gulp-tslint": "^3.1",
+    "jasmine": "^2.3.1",
+    "sinon": "^1.17.3",
+    "tslint": "^3.6.0",
+    "typescript": "^1.8.9",
+    "typings": "^0.7.9"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "main": "./lib/index.js",
+  "typings": "./lib/nuimo-client-ts.d.ts"
 }

@@ -1,18 +1,24 @@
-import uuids from "./common-uuids";
+import "source-map-support/register";
 
+import uuids from "./common-uuids";
 
 /**
  * @class
  */
-class Update {
-  constructor (type, time) {
+export abstract class Update {
+  constructor (type: string, time: number) {
     this._type = type;
-    this._time = time;
+    this._time = new Date(time);
   }
+
+  private _type: string;
+  private _time: Date;
 
   get time () { return this._time; }
 
   get type () { return this._type; }
+
+  public abstract accept(vistor: any): any;
 }
 
 
@@ -20,14 +26,16 @@ class Update {
  * @class
  */
 export class ClickUpdate extends Update {
-  constructor(down) {
+  constructor(down: boolean) {
     super("click", Date.now());
     this._down = down;
   }
 
+  private _down: boolean;
+
   get down () { return this._down; }
 
-  accept(vistor) {
+  public accept(vistor: any) {
     return vistor.withClick(this);
   }
 }
@@ -37,14 +45,16 @@ export class ClickUpdate extends Update {
  * @class
  */
 export class TurnUpdate extends Update {
-  constructor(offset) {
+  constructor(offset: number) {
     super("turn", Date.now());
     this._offset = offset;
   }
 
+  private _offset: number;
+
   get offset () { return this._offset; }
 
-  accept(vistor) {
+  public accept(vistor: any) {
     return vistor.withTurn(this);
   }
 }
@@ -54,14 +64,16 @@ export class TurnUpdate extends Update {
  * @class
  */
 export class SwipeUpdate extends Update {
-  constructor(direction) {
+  constructor(direction: string) {
     super("swipe", Date.now());
     this._direction = direction;
   }
 
+  private _direction: string;
+
   get direction () { return this._direction; }
 
-  accept(vistor) {
+  public accept(vistor: any) {
     return vistor.withSwipe(this);
   }
 }
@@ -75,13 +87,13 @@ export class SwipeUpdate extends Update {
  * @param {Buffer} (a node buffer)
  * @return Update
  */
-export function updateFactory(characteristicUUID, buffer) {
+export function updateFactory(characteristicUUID: string, buffer: Buffer): Update {
   switch (characteristicUUID) {
     case uuids.characteristics.turn:
       const offset = buffer.readInt16LE(0);
       return new TurnUpdate(offset);
     case uuids.characteristics.swipe:
-      let direction;
+      let direction: string;
       switch (buffer.readInt8(0)) {
         case 0: direction = "l"; break;
         case 1: direction = "r"; break;

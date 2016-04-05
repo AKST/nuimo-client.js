@@ -1,14 +1,9 @@
-/**
- * To run example
- *
- * cd <project directory
- * npm install
- * ./node_modules/.bin/babel-node ./examples/leds.js
- */
-import withNuimo from "../src";
+import "source-map-support/register";
 
+import * as nuimoLib from "../src";
+import {NuimoClient} from "../src/client";
 
-withNuimo().then(nuimo => {
+function runLedScriptOnNuimo(nuimo: NuimoClient): void {
   const timeoutPeriod = 1000 / 2;
 
   setTimeout(function interval() {
@@ -23,10 +18,15 @@ withNuimo().then(nuimo => {
     const brightness = Math.floor(Math.random() * 255);
 
     nuimo.writeLEDS(data, 1, 0.5).then(() => {
-      const next = Math.max(0, timeoutPeriod - ((new Date()) - init));
+      const next = Math.max(0, timeoutPeriod - ((new Date().getMilliseconds()) - init.getMilliseconds()));
       setTimeout(interval, next);
     }).catch(error => {
       console.error(error);
     });
   }, timeoutPeriod);
+}
+
+nuimoLib.withNuimos(5000).then(
+  (nuimos: NuimoClient[]) => {
+    nuimos.forEach(runLedScriptOnNuimo);
 });

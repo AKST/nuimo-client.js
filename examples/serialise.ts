@@ -1,17 +1,13 @@
-/**
- * To run example
- *
- * cd <project directory
- * npm install
- * ./node_modules/.bin/babel-node ./examples/serialise.js
- */
+import "source-map-support/register";
+
 import withNuimo from "../src";
+import { Update, ClickUpdate, TurnUpdate, SwipeUpdate } from "../src/update";
 
 /**
  * a serialiser implemented using the update's visitor API
  */
-const Serailiser = {
-  serialise(update) {
+const Serialiser = {
+  serialise(update: Update) {
     return {
       type: update.type,
       time: update.time,
@@ -19,23 +15,22 @@ const Serailiser = {
     };
   },
 
-  withClick (clickUpdate) {
+  withClick (clickUpdate: ClickUpdate) {
     return { down: clickUpdate.down };
   },
 
-  withSwipe (swipeUpdate) {
+  withSwipe (swipeUpdate: SwipeUpdate) {
     return { direction: swipeUpdate.direction };
   },
 
-  withTurn (turnUpdate) {
+  withTurn (turnUpdate: TurnUpdate) {
     return { offset: turnUpdate.offset };
   }
 };
 
-
 withNuimo().then(nuimo => {
   nuimo.listen(data => {
-    const serialised = Serailiser.serialise(data);
+    const serialised = Serialiser.serialise(data);
     console.log(JSON.stringify(serialised));
   });
 });

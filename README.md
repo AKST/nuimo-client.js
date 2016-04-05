@@ -1,15 +1,17 @@
-# nuimo-client.js
+# nuimo-client.ts
 
 ## Hit the ground runnning
 
 ```
-npm install --save nuimo-client
+npm install --save nuimo-client-ts
 ```
 
 ## What is this?
 
 A simple client library for communicating with the [senic nuimo][nuimo-docs],
 via the BLE (Bluetooth Low Energy) API ([read more here][nuimo-ble]).
+
+You can use it with TypeScript, but also with Javascript ES6. 
 
 ```javascript
 import withNuimo from "nuimo-client";
@@ -28,3 +30,50 @@ gesuture.
 
 [nuimo-docs]: https://www.senic.com/developers
 [nuimo-ble]: https://medium.com/@senic/developing-for-the-nuimo-controller-7292becfacff
+
+## Requirements
+This library was developed TypeScript 1.8.9 and compiles against ES6 for Promises and async support. Support for ES6 is built into Node 4 and higher.
+
+Make sure that you use the following settings in `tsconfig.json` if you use TypeScript:
+```json
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node"
+  }
+}
+```
+
+## Running the examples
+The easiest is to install ts-node:
+```
+npm install -g ts-node
+```
+
+Then run the examples:
+```
+ts-node ./examples/cycle-leds.ts
+ts-node ./examples/leds.ts
+ts-node ./examples/leds-multiple-nuimos.ts
+ts-node ./examples/serialise.ts
+```
+## Building the package yourself
+Install the dependencies:
+```
+npm install -g gulp
+npm install
+typings install
+```
+
+Run gulp:
+```
+gulp build
+```
+
+## Port
+
+This project was ported from https://github.com/AKST/nuimo-client.js
+and https://github.com/brendonparker/nuimo-client.js to create a TypeScript version
+that also supports more than one Nuimo. Thanks go to them for creating the basis
+of this package.

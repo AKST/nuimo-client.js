@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "declaration": true,
+    "sourceMap": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "outDir": "./lib",
+    "preserveConstEnums": true,
+    "removeComments": false
+  },
+  "filesGlob": [
+    "typings/main.d.ts",
+    "src/**/*.ts"
+  ],
+  "files": [
+    "typings/main.d.ts",
+    "src/client.ts",
+    "src/clientFactory.ts",
+    "src/common-uuids.ts",
+    "src/index.ts",
+    "src/interfaces.d.ts",
+    "src/update.ts"
+  ]
+}

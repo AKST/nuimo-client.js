@@ -1,2 +1,5 @@
+coverage/
+node_modules/
+typings/
 lib/
-node_modules
+npm-debug.log
