@@ -14,7 +14,7 @@ via the BLE (Bluetooth Low Energy) API ([read more here][nuimo-ble]).
 You can use it with TypeScript, but also with Javascript ES6. 
 
 ```javascript
-import withNuimo from "nuimo-client";
+import withNuimo from "nuimo-client-ts";
 
 // log updates
 withNuimo().then(nuimo =>
