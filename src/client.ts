@@ -117,3 +117,6 @@ export class NuimoClient {
         this._emitter.removeAllListeners("data");
     }
 }
+
+
+export default { NuimoClient };
