@@ -108,6 +108,3 @@ export function updateFactory(characteristicUUID: string, buffer: Buffer): Updat
       throw new Error(`unidenfied update '${characteristicUUID}'`);
   }
 }
-
-
-export default { updateFactory, SwipeUpdate, ClickUpdate, TurnUpdate, Update };
