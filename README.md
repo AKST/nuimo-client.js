@@ -1,9 +1,9 @@
 # nuimo-client.ts
 
 ## Hit the ground runnning
-
+Install from Github:
 ```
-npm install --save nuimo-client-ts
+npm install --save https://github.com/wind-rider/nuimo-client.ts/archive/v0.3.0.tar.gz
 ```
 
 ## What is this?
