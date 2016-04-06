@@ -54,6 +54,8 @@ Make sure that you use the following settings in `tsconfig.json` if you use Type
     "moduleResolution": "node"
   }
 }
+
+This package depends on the typings listed in `typings.json` (currently noble and node).
 ```
 
 ## Running the examples
@@ -83,8 +85,15 @@ gulp build
 ```
 
 ## Port
-
 This project was ported from https://github.com/AKST/nuimo-client.js
 and https://github.com/brendonparker/nuimo-client.js to create a TypeScript version
 that also supports more than one Nuimo. Thanks go to them for creating the basis
 of this package.
+
+## Contributing
+This is my first TypeScript package and as such you might see room for improvement. Please create an issue or pull request to give feedback and share your ideas!
+
+Things I could use help with:
+- Distribution of the typings dependencies in the NPM package
+- Improvement of the project structure and code structure
+- Writing tests
