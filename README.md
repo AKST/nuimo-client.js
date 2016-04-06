@@ -5,7 +5,7 @@ Install from Github:
 ```
 npm install --save https://github.com/wind-rider/nuimo-client.ts/archive/v0.3.0.tar.gz
 npm install -g typings # to install the typings manager
-typings install --ambient noble && typings install --ambient node  # to install the required typimgs
+typings install --ambient noble node  # to install the required typimgs
 
 ```
 
