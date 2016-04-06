@@ -4,6 +4,9 @@
 Install from Github:
 ```
 npm install --save https://github.com/wind-rider/nuimo-client.ts/archive/v0.3.0.tar.gz
+npm install -g typings # to install the typings manager
+typings install --ambient noble && typings install --ambient node  # to install the required typimgs
+
 ```
 
 ## What is this?
@@ -13,13 +16,22 @@ via the BLE (Bluetooth Low Energy) API ([read more here][nuimo-ble]).
 
 You can use it with TypeScript, but also with Javascript ES6. 
 
-```javascript
-import withNuimo from "nuimo-client-ts";
+```typescript
+import * as Nuimo from "nuimo-client-ts";
 
 // log updates
-withNuimo().then(nuimo =>
-  nuimo.listen(data =>
-    console.log(data)));
+Nuimo.withNuimo().then(
+    nuimo =>
+        nuimo.listen(function(update) {
+            console.log(update.type);
+            if (update instanceof Nuimo.SwipeUpdate) {
+                console.log("casting test");
+                let swipeUpdate = <Nuimo.SwipeUpdate>update;
+                console.log(swipeUpdate.direction);
+            }
+        }
+        ));
+        import withNuimo from "nuimo-client-ts";
 ```
 
 ## Missing Features

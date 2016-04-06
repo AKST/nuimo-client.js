@@ -1,12 +1,13 @@
 {
-  "name": "nuimo-client.ts",
-  "version": false,
+  "name": "nuimo-client-ts",
+  "version": "0.3.0",
+  "main": "./lib/index.js",
   "devdependencies": {
     "assert": "registry:dt/assert#0.0.0+20160317120654",
     "sinon": "registry:npm/sinon#1.16.0+20160309002336"
   },
   "ambientDependencies": {
-    "node": "registry:dt/node#4.0.0+20160330064709",
-    "noble": "github:wind-rider/DefinitelyTyped/noble/noble.d.ts#9a8b3282ee53e8990367d2d18b334c2e85aebf32"
+    "noble": "registry:dt/noble#0.0.0+20160406120732",
+    "node": "registry:dt/node#4.0.0+20160330064709"
   }
 }

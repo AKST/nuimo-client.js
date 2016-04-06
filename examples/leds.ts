@@ -1,6 +1,6 @@
 import "source-map-support/register";
 
-import withNuimo from "../src";
+import { withNuimo } from "../src";
 
 
 withNuimo().then(nuimo => {

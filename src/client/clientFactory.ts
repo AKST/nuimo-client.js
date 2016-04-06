@@ -9,8 +9,8 @@ import {
     SERVICE_SENSOR_UUID,
     SERVICE_MATRIX_UUID,
     CHARACTERISTIC_MATRIX_UUID,
-} from "./common-uuids";
-import { NuimoClient } from "./client";
+} from "../noblePeripheral/common-uuids";
+import NuimoClient from "./nuimoClient";
 import { NuimoInternalCharacteristicEvent } from "./interfaces";
 
 /**

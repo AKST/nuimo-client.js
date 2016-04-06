@@ -1,7 +1,7 @@
 import "source-map-support/register";
 
-import withNuimo from "../src";
-import * as update from "../src/update";
+import { withNuimo } from "../src";
+import * as update from "../src/update/update";
 import images from "./led-images";
 
 console.log("Looking for Nuimo device...");

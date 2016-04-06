@@ -1,7 +1,7 @@
 import "source-map-support/register";
 
 import * as nuimoLib from "../src";
-import {NuimoClient} from "../src/client";
+import NuimoClient from "../src/client/nuimoClient";
 
 function runLedScriptOnNuimo(nuimo: NuimoClient): void {
   const timeoutPeriod = 1000 / 2;

@@ -3,13 +3,13 @@ import "source-map-support/register";
 import noble = require("noble");
 import event = require("events");
 
-import * as updates from "./update";
+import * as updates from "../update/update";
 import {NuimoInternalCharacteristicEvent} from "./interfaces";
 
 /**
  * @class
  */
-export class NuimoClient {
+export default class NuimoClient {
 
     /**
      * @param  {event.EventEmitter} emitter
@@ -117,6 +117,3 @@ export class NuimoClient {
         this._emitter.removeAllListeners("data");
     }
 }
-
-
-export default { NuimoClient };

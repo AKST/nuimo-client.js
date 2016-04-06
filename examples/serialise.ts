@@ -1,7 +1,7 @@
 import "source-map-support/register";
 
-import withNuimo from "../src";
-import { Update, ClickUpdate, TurnUpdate, SwipeUpdate } from "../src/update";
+import { withNuimo } from "../src";
+import { Update, ClickUpdate, TurnUpdate, SwipeUpdate } from "../src/update/update";
 
 /**
  * a serialiser implemented using the update's visitor API
