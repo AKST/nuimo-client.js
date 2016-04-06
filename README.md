@@ -31,7 +31,6 @@ Nuimo.withNuimo().then(
             }
         }
         ));
-        import withNuimo from "nuimo-client-ts";
 ```
 
 ## Missing Features
