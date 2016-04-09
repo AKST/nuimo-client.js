@@ -3,7 +3,7 @@
 ## Hit the ground runnning
 Install from Github:
 ```
-npm install --save https://github.com/wind-rider/nuimo-client.ts/releases/download/v0.3.0/nuimo-client-ts-0.3.0.tgz
+npm install --save https://github.com/wind-rider/nuimo-client.ts/releases/download/v0.4.0/nuimo-client-ts-0.4.0.tgz
 npm install -g typings # to install the typings manager
 typings install --ambient noble node  # to install the required typimgs
 
@@ -35,9 +35,7 @@ Nuimo.withNuimo().then(
 
 ## Missing Features
 
-Due to the partially undocumated nature of the BLE API only a subset of
-functionality has been implemented thus far, which is mostly the fly
-gesuture.
+The fly update was added based on the documentation, but I do not have a real device to test with so please let me know whether it works.
 
 [nuimo-docs]: https://www.senic.com/developers
 [nuimo-ble]: https://medium.com/@senic/developing-for-the-nuimo-controller-7292becfacff

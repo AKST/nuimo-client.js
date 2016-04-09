@@ -1,6 +1,6 @@
 {
   "name": "nuimo-client-ts",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "main": "./lib/index.js",
   "devdependencies": {
     "assert": "registry:dt/assert#0.0.0+20160317120654",

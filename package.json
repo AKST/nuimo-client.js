@@ -1,7 +1,7 @@
 {
   "name": "nuimo-client-ts",
   "author": "wind-rider",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "TypeScript port of nuimo-client.js with additional features like support for multiple Nuimos.",
   "license": "MIT",
   "repository": {

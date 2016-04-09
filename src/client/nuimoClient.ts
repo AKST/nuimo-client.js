@@ -43,6 +43,17 @@ export default class NuimoClient {
     }
 
     /**
+     * @returns string - BLE uuid of the device
+     */
+    public get uuid(): string {
+        if (this._peripheral) {
+            return this._peripheral.uuid;
+        }
+
+        return "";
+    }
+
+    /**
      * @param  {string|Array<string>|Array<number>} data
      * @returns Buffer
      */
